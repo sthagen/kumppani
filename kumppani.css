@@ -1,1 +1,11 @@
-
+body { background-color: #eee; margin: 24px; }
+h1 { color: red; }
+#game { background-color: #ffd; }
+#levels { display: none }
+#action-buttons {
+  display: none;
+  width: 480px;
+  background-color: #ddf;
+  text-align: center;
+}
+#action-buttons button { margin: 24px; }
