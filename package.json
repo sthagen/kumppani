@@ -1,0 +1,23 @@
+{
+  "author": "Stefan Hagen <stefan@hagen.link> (https://stefan-hagen.website)",
+  "bugs": "https://github.com/sthagen/kumppani/issues",
+  "dependencies": {},
+  "description": "Companion (Finnish: kumppani).",
+  "devDependencies": {
+    "prettier": "^2.6.2"
+  }
+  "engines": {
+    "node": ">=16"
+  },
+  "homepage": "https://sthagen.github.io/kumppani/",
+  "keywords": [
+    "game",
+    "learning-tools"
+  ],
+  "license": "MIT",
+  "name": "kumppani",
+  "private": true,
+  "repository": "github:sthagen/kumppani",
+  "scripts": {},
+  "version": "2022.4.25"
+}
