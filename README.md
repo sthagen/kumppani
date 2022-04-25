@@ -1,0 +1,2 @@
+# kumppani
+Companion (Finnish: kumppani).
