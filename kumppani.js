@@ -92,30 +92,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (weak > 50) make_sicker(5)  // If it gets too hungry, it starts losing health too.
   }
 
+  const clamp = (what) => what < 0 ? 0 : ( what > 100 ? 100 : what)
+
+  const update = (what, by) => {
+    what += by
+    return clamp(what)
+  }
+
   const make_unhappier = (happiness_lost) => {
-    mood -= happiness_lost
-    if (mood < 0) mood = 0
+    mood = update(mood, -happiness_lost)
     document.querySelector('#mood').textContent = 'Mood: ' + mood
     if (mood < 80) make_sicker(5)  // If it gets a bit unhappy, it starts losing health.
   }
 
   const make_happier = (happiness_gained) => {
-    mood += happiness_gained
-    if (mood > 100) mood = 100
+    mood = update(mood, happiness_gained)
     document.querySelector('#mood').textContent = 'Mood: ' + mood
   }
 
   const make_sicker = (health_lost) => {
-    health -= health_lost
-    if (health < 0) health = 0
+    health = update(health, -health_lost)
     document.querySelector('#health').textContent = 'Health: ' + health
     draw_alien()
     if (!alien_is_alive()) game_over_lost()
   }
 
   const make_healthier = (health_gained) => {
-    health += health_gained
-    if (health > 100) health = 100
+    health = update(health, +health_gained)
     document.querySelector('#health').textContent = 'Health: ' + health
     draw_alien()
   }
@@ -138,8 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const feed_alien_some_vegetables = () => {
-    weak -= 20
-    if (weak < 0) weak = 0
+    weak = update(weak, -20)
     document.querySelector('#weak').textContent = 'Weak: ' + weak
     disable('#vegetables')
     setTimeout(() => enable('#vegetables'), 3000)
@@ -148,8 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#vegetables').addEventListener('click', feed_alien_some_vegetables)
 
   const feed_alien_sweets = () => {
-    weak -= 10
-    if (weak < 0) weak = 0
+    weak = update(weak, -10)
     document.querySelector('#weak').textContent = 'Weak: ' + weak
     make_sicker(5)  // Sweets are not healthy.
     if (alien_is_alive()) {
