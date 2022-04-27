@@ -72,8 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => enable(selector), millis)
   }
 
-  const fade_out_hatch_instructions = () => {
-    $('#boot').fadeOut(400, fade_in_playing_sections)
+   const fade_out_hatch_instructions = () => {
+    const synced_millis = 400
+    $('#boot').fadeOut(synced_millis)
+    setTimeout(() => {
+      fade_in_playing_sections()
+    }, synced_millis)
   }
 
   const fade_in_playing_sections = () => {
