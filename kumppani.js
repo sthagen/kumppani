@@ -65,6 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const disable = (selector) => { document.querySelector(selector).setAttribute('disabled', true) }
+
+  const enable = (selector) => { document.querySelector(selector).removeAttribute('disabled') }
+
   const fade_out_hatch_instructions = () => {
     $('#boot').fadeOut(400, fade_in_playing_sections)
   }
@@ -137,8 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
     weak -= 20
     if (weak < 0) weak = 0
     document.querySelector('#weak').textContent = 'Weak: ' + weak
-    document.querySelector('#vegetables').setAttribute('disabled', true)
-    setTimeout(() => document.querySelector('#vegetables').removeAttribute('disabled'), 3000)
+    disable('#vegetables')
+    setTimeout(() => enable('#vegetables'), 3000)
   }
 
   document.querySelector('#vegetables').addEventListener('click', feed_alien_some_vegetables)
@@ -147,10 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
     weak -= 10
     if (weak < 0) weak = 0
     document.querySelector('#weak').textContent = 'Weak: ' + weak
-    make_sicker(5)  // But sweets are not healthy:
+    make_sicker(5)  // Sweets are not healthy.
     if (alien_is_alive()) {
-      document.querySelector('#sweets').setAttribute('disabled', true)
-      setTimeout(() => document.querySelector('#sweets').removeAttribute('disabled'), 200)
+      disable('#sweets')
+      setTimeout(() => enable('#sweets'), 200)
     }
   }
 
@@ -158,8 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const give_alien_medicine = () => {
     make_healthier(40)
-    document.querySelector('#medicine').setAttribute('disabled', true)
-    setTimeout(() => document.querySelector('#medicine').removeAttribute('disabled'), 5000)
+    disable('#medicine')
+    setTimeout(() => enable('#medicine'), 5000)
   }
 
   document.querySelector('#medicine').addEventListener('click', give_alien_medicine)
@@ -168,8 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
     last_played_with = up
     bored = false
     draw_alien()
-    document.querySelector('#play').setAttribute('disabled', true)
-    setTimeout(() => document.querySelector('#play').removeAttribute('disabled'), 1000)
+    disable('#play')
+    setTimeout(() => enable('#play'), 1000)
   }
 
   document.querySelector('#play').addEventListener('click', play_game_with_alien)
