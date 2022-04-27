@@ -66,8 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const disable = (selector) => { document.querySelector(selector).setAttribute('disabled', true) }
-
   const enable = (selector) => { document.querySelector(selector).removeAttribute('disabled') }
+  const disable_for = (selector, millis) => {
+    disable(selector)
+    setTimeout(() => enable(selector), millis)
+  }
 
   const fade_out_hatch_instructions = () => {
     $('#boot').fadeOut(400, fade_in_playing_sections)
@@ -143,8 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const feed_alien_some_vegetables = () => {
     weak = update(weak, -20)
     document.querySelector('#weak').textContent = 'Weak: ' + weak
-    disable('#vegetables')
-    setTimeout(() => enable('#vegetables'), 3000)
+    disable_for('#vegetables', 3000)
   }
 
   document.querySelector('#vegetables').addEventListener('click', feed_alien_some_vegetables)
@@ -154,8 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#weak').textContent = 'Weak: ' + weak
     make_sicker(5)  // Sweets are not healthy.
     if (alien_is_alive()) {
-      disable('#sweets')
-      setTimeout(() => enable('#sweets'), 200)
+      disable_for('#sweets', 200)
     }
   }
 
@@ -163,8 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const give_alien_medicine = () => {
     make_healthier(40)
-    disable('#medicine')
-    setTimeout(() => enable('#medicine'), 5000)
+    disable_for('#medicine', 5000)
   }
 
   document.querySelector('#medicine').addEventListener('click', give_alien_medicine)
@@ -173,8 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     last_played_with = up
     bored = false
     draw_alien()
-    disable('#play')
-    setTimeout(() => enable('#play'), 1000)
+    disable_for('#play', 1000)
   }
 
   document.querySelector('#play').addEventListener('click', play_game_with_alien)
