@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else make_happier(2)
   }
 
-  const feed_alien_some_bread = () => {
+  const feed_alien_some_vegetables = () => {
     weak -= 20
     if (weak < 0) weak = 0
     document.querySelector('#weak').textContent = 'Weak: ' + weak
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => document.querySelector('#vegetables').removeAttribute('disabled'), 3000)
   }
 
-  document.querySelector('#vegetables').addEventListener('click', feed_alien_some_bread)
+  document.querySelector('#vegetables').addEventListener('click', feed_alien_some_vegetables)
 
   const feed_alien_sweets = () => {
     weak -= 10
