@@ -65,84 +65,70 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  document.querySelector('#wake-up').addEventListener('click', draw_alien_fade_instructions)
-
-  function fade_out_hatch_instructions() {
+  const fade_out_hatch_instructions = () => {
     $('#boot').fadeOut(400, fade_in_playing_sections)
   }
 
-  function fade_in_playing_sections() {
+  const fade_in_playing_sections = () => {
     $('#levels').fadeIn()
     $('#action-buttons').fadeIn()
   }
 
-  function draw_alien_fade_instructions() {
+  const draw_alien_fade_instructions = () => {
     draw_alien()
     fade_out_hatch_instructions()
     setTimeout(time_goes_by, 2000)
   }
 
-  function make_alien_hungrier() {
+  document.querySelector('#wake-up').addEventListener('click', draw_alien_fade_instructions)
+
+  const make_alien_hungrier = () => {
     weak += 5
     document.querySelector('#weak').textContent = 'Weak: ' + weak
-
-    // If it gets too hungry, it starts losing health too.
-    if (weak > 50) make_sicker(5)
+    if (weak > 50) make_sicker(5)  // If it gets too hungry, it starts losing health too.
   }
 
-  function make_unhappier(happiness_lost) {
+  const make_unhappier = (happiness_lost) => {
     mood -= happiness_lost
     if (mood < 0) mood = 0
-
     document.querySelector('#mood').textContent = 'Mood: ' + mood
-
-    // If it gets a bit unhappy, it starts losing health.
-    if (mood < 80) make_sicker(5)
+    if (mood < 80) make_sicker(5)  // If it gets a bit unhappy, it starts losing health.
   }
 
-  function make_happier(happiness_gained) {
+  const make_happier = (happiness_gained) => {
     mood += happiness_gained
     if (mood > 100) mood = 100
-
     document.querySelector('#mood').textContent = 'Mood: ' + mood
   }
 
-  function make_sicker(health_lost) {
+  const make_sicker = (health_lost) => {
     health -= health_lost
     if (health < 0) health = 0
-
     document.querySelector('#health').textContent = 'Health: ' + health
-
     draw_alien()
-
     if (!alien_is_alive()) game_over_lost()
   }
 
-  function make_healthier(health_gained) {
+  const make_healthier = (health_gained) => {
     health += health_gained
     if (health > 100) health = 100
-
     document.querySelector('#health').textContent = 'Health: ' + health
-
     draw_alien()
   }
 
-  function maybe_make_alien_sicker() {
-    if (Math.random() < 0.1) make_sicker(40)
-  }
+  const maybe_make_alien_sicker = () => { if (Math.random() < 0.1) make_sicker(40) }
 
-  function make_alien_older() {
+  const make_alien_older = () => {
     up += 1
     document.querySelector('#up').textContent = 'Up: ' + up + ' hours'
   }
 
-  function maybe_make_alien_bored() {
-    var hours_since_last_played_with = up - last_played_with
+  const maybe_make_alien_bored = () => {
+    const hours_since_last_played_with = up - last_played_with
     if (hours_since_last_played_with > 5) {
       bored = true
       draw_alien()
     }
-
     if (bored) make_unhappier(5)
     else make_happier(2)
   }
@@ -170,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelector('#sweets').addEventListener('click', feed_alien_sweets)
 
-  function give_alien_medicine() {
+  const give_alien_medicine = () => {
     make_healthier(40)
     document.querySelector('#medicine').setAttribute('disabled', true)
     setTimeout(() => document.querySelector('#medicine').removeAttribute('disabled'), 5000)
@@ -178,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelector('#medicine').addEventListener('click', give_alien_medicine)
 
-  function play_game_with_alien() {
+  const play_game_with_alien = () => {
     last_played_with = up
     bored = false
     draw_alien()
@@ -196,12 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#info').textContent = 'Well done!' + '  Your Companion stayed up' + ' 100 hours!'
   }
 
-  function time_goes_by() {
+  const time_goes_by = () => {
     make_alien_hungrier()
     maybe_make_alien_sicker()
     make_alien_older()
     maybe_make_alien_bored()
-
     if (alien_is_alive() && alien_still_growing()) setTimeout(time_goes_by, 2000)
     else if (alien_is_alive()) game_over_won()
     else game_over_lost()
