@@ -150,37 +150,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const feed_alien_some_bread = () => {
     weak -= 20
     if (weak < 0) weak = 0
-
     document.querySelector('#weak').textContent = 'Weak: ' + weak
-
-    // The player can't immediately give more bread
     document.querySelector('#vegetables').setAttribute('disabled', true)
-    //
-    // but after a few seconds have gone by, they can.
     setTimeout(() => document.querySelector('#vegetables').removeAttribute('disabled'), 3000)
   }
 
   document.querySelector('#vegetables').addEventListener('click', feed_alien_some_bread)
 
-  function enable_sweets_button() {
-    document.querySelector('#sweets').removeAttribute('disabled')
-  }
-
-  function feed_alien_sweets() {
+  const feed_alien_sweets = () => {
     weak -= 10
     if (weak < 0) weak = 0
-
     document.querySelector('#weak').textContent = 'Weak: ' + weak
-
-    // But sweets are not healthy:
-    make_sicker(5)
-
+    make_sicker(5)  // But sweets are not healthy:
     if (alien_is_alive()) {
-      // The player can't immediately give more sweets
       document.querySelector('#sweets').setAttribute('disabled', true)
-      //
-      // but after a few seconds have gone by, they can.
-      setTimeout(enable_sweets_button, 200)
+      setTimeout(() => document.querySelector('#sweets').removeAttribute('disabled'), 200)
     }
   }
 
