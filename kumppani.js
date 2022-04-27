@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function draw_alien_fade_instructions() {
     draw_alien()
     fade_out_hatch_instructions()
-    window.setTimeout(time_goes_by, 2000)
+    setTimeout(time_goes_by, 2000)
   }
 
   function make_alien_hungrier() {
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#vegetables').setAttribute('disabled', true)
     //
     // but after a few seconds have gone by, they can.
-    window.setTimeout(enable_bread_button, 3000)
+    setTimeout(enable_bread_button, 3000)
   }
 
   document.querySelector('#vegetables').addEventListener('click', feed_alien_some_bread)
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function give_alien_medicine() {
     make_healthier(40)
     document.querySelector('#medicine').setAttribute('disabled', true)
-    window.setTimeout(enable_medicine_button, 5000)
+    setTimeout(enable_medicine_button, 5000)
   }
 
   document.querySelector('#medicine').addEventListener('click', give_alien_medicine)
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bored = false
     draw_alien()
     document.querySelector('#play').setAttribute('disabled', true)
-    window.setTimeout(enable_play_game_button, 1000)
+    setTimeout(enable_play_game_button, 1000)
   }
 
   document.querySelector('#play').addEventListener('click', play_game_with_alien)
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     make_alien_older()
     maybe_make_alien_bored()
 
-    if (alien_is_alive() && alien_still_growing()) window.setTimeout(time_goes_by, 2000)
+    if (alien_is_alive() && alien_still_growing()) setTimeout(time_goes_by, 2000)
     else if (alien_is_alive()) game_over_won()
     else game_over_lost()
   }
