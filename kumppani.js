@@ -170,37 +170,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelector('#sweets').addEventListener('click', feed_alien_sweets)
 
-  function enable_medicine_button() {
-    document.querySelector('#medicine').removeAttribute('disabled')
-  }
-
   function give_alien_medicine() {
     make_healthier(40)
     document.querySelector('#medicine').setAttribute('disabled', true)
-    setTimeout(enable_medicine_button, 5000)
+    setTimeout(() => document.querySelector('#medicine').removeAttribute('disabled'), 5000)
   }
 
   document.querySelector('#medicine').addEventListener('click', give_alien_medicine)
-
-  function enable_play_game_button() {
-    document.querySelector('#play').removeAttribute('disabled')
-  }
 
   function play_game_with_alien() {
     last_played_with = up
     bored = false
     draw_alien()
     document.querySelector('#play').setAttribute('disabled', true)
-    setTimeout(enable_play_game_button, 1000)
+    setTimeout(() => document.querySelector('#play').removeAttribute('disabled'), 1000)
   }
 
   document.querySelector('#play').addEventListener('click', play_game_with_alien)
 
-  function game_over_lost() {
+  const game_over_lost = () => {
     document.querySelector('#info').textContent = 'Oh no!  Your Companion died!'
   }
 
-  function game_over_won() {
+  const game_over_won = () => {
     document.querySelector('#info').textContent = 'Well done!' + '  Your Companion stayed up' + ' 100 hours!'
   }
 
