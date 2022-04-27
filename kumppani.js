@@ -147,11 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else make_happier(2)
   }
 
-  function enable_bread_button() {
-    document.querySelector('#vegetables').removeAttribute('disabled')
-  }
-
-  function feed_alien_some_bread() {
+  const feed_alien_some_bread = () => {
     weak -= 20
     if (weak < 0) weak = 0
 
@@ -161,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#vegetables').setAttribute('disabled', true)
     //
     // but after a few seconds have gone by, they can.
-    setTimeout(enable_bread_button, 3000)
+    setTimeout(() => document.querySelector('#vegetables').removeAttribute('disabled'), 3000)
   }
 
   document.querySelector('#vegetables').addEventListener('click', feed_alien_some_bread)
