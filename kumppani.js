@@ -74,15 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
    const fade_out_hatch_instructions = () => {
     const synced_millis = 400
-    $('#boot').fadeOut(synced_millis)
+    document.querySelector('#boot').fadeOut(synced_millis)
     setTimeout(() => {
       fade_in_playing_sections()
     }, synced_millis)
   }
 
   const fade_in_playing_sections = () => {
-    $('#levels').fadeIn()
-    $('#action-buttons').fadeIn()
+    document.querySelector('#levels').fadeIn()
+    document.querySelector('#action-buttons').fadeIn()
   }
 
   const draw_alien_fade_instructions = () => {
